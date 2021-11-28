@@ -1,0 +1,33 @@
+#Square{
+    height: 300px;
+    width: 300px;
+    border: solid 1px rgb(58, 58, 58);
+    position: relative;
+}
+.ball{
+    width:10px;height:10px;
+    border-radius: 50%;
+    background-color: rgb(30, 253, 0);
+    border: solid 1px rgb(0, 0, 0);
+    transition:transform 5ms;
+    transition-timing-function: ease-in-out;
+    position:absolute;top: 0;left: 30px;
+    
+}
+body{
+    display: flex;justify-content: center;
+}
+#input{
+    position: absolute;top: -1px;right:-1px;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    border: none;
+    cursor: pointer;
+}
+#human{
+    width:10px;height:60px;
+    background:rgb(80, 80, 80);
+    margin: 0 20px;
+    position: relative;
+}
