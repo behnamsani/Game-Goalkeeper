@@ -2,23 +2,15 @@ const ball = document.querySelector(".ball");
 const input = document.querySelector("#input");
 const Square = document.querySelector("#Square");
 const human = document.querySelector("#human");
+const startTxt = document.querySelector("#start");
 
 
-input.addEventListener("keydown", mHuman);
-input.addEventListener("click", move);
-input.addEventListener("click", ()=>{
-    Square.style.border="solid 2px green";
-});
-
-
+let mouseY;
+let mouseX;
 const speedHandel=10;
 const speedBall=1;
-let right =0;
-let left =0;
 let down =0;
 let up =0;
-let rKey =false;
-let lKey =false;
 let dKey =false;
 let uKey =false;
 let translateX=0;
@@ -29,12 +21,37 @@ const limitX=258;
 const limitY=288;
 const limit=240;
 let flagR=true;
-// let flagL=false;
-// let flagU=false;
 let flagD=true;
 let start = true;
 human.style.transform=`translate(0px,1px)`;
+
+
+
+
+input.addEventListener("keydown", mHuman);
+input.addEventListener("click", move);
+input.addEventListener("click", ()=>{
+    Square.style.border="solid 2px green";
+    startTxt.style.display="none";
+});
+Square.addEventListener("mousemove", (event) => {
+     mouseX = event.clientX; // Gets Mouse X
+     mouseY = event.clientY; // Gets Mouse Y
+    if(mouseY<=8){
+        mouseY=0;
+    }
+    if(mouseY>=240){
+        mouseY=240;
+    }
+    translateY=mouseY;
+    human.style.transform=`translate(${translateX}px,${translateY}px)`;
+
+  });
+
+
+
 function mHuman(e) {
+    
     if(e.key==="ArrowDown"&&down<=limit){
         if(uKey===true){
             down=up;
@@ -100,7 +117,10 @@ function moveBall(){
             moveX=-30;
             moveY=moveY;
             Square.style.border="solid 2px red";
-            console.log("you lose");
+            startTxt.innerHTML="You lost";
+            startTxt.style.color="red";
+            startTxt.style.display="block";
+            startTxt.style.left="64px";
             start = false;
         }
 

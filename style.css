@@ -1,4 +1,6 @@
+
 #Square{
+    
     height: 300px;
     width: 300px;
     border: solid 1px rgb(58, 58, 58);
@@ -30,4 +32,11 @@ body{
     background:rgb(80, 80, 80);
     margin: 0 20px;
     position: relative;
+}
+
+#start{
+    position: absolute;top: 80px;left:80px;
+    opacity: 50%;
+    font-size: 50px;
+    color:green;
 }
