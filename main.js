@@ -5,8 +5,8 @@ const human = document.querySelector("#human");
 const startTxt = document.querySelector("#start");
 
 
-let mouseY;
-let mouseX;
+let posMY;
+let posMX;
 const speedHandel=10;
 const speedBall=1;
 let down =0;
@@ -35,15 +35,15 @@ input.addEventListener("click", ()=>{
     startTxt.style.display="none";
 });
 Square.addEventListener("mousemove", (event) => {
-     mouseX = event.clientX; // Gets Mouse X
-     mouseY = event.clientY; // Gets Mouse Y
-    if(mouseY<=8){
-        mouseY=0;
+     posMX = event.clientX; // Gets Mouse X
+     posMY = event.clientY; // Gets Mouse Y
+    if(posMY<=15){
+        posMY=1;
     }
-    if(mouseY>=240){
-        mouseY=240;
+    if(posMY>=240){
+        posMY=240;
     }
-    translateY=mouseY;
+    translateY=posMY;
     human.style.transform=`translate(${translateX}px,${translateY}px)`;
 
   });
@@ -51,7 +51,7 @@ Square.addEventListener("mousemove", (event) => {
 
 
 function mHuman(e) {
-    
+
     if(e.key==="ArrowDown"&&down<=limit){
         if(uKey===true){
             down=up;
@@ -140,8 +140,8 @@ function moveBall(){
         
         
         
-        for(let i =humanPosition; i<=humanPosition+50; i+=speedBall){
-            if(i==moveY && moveX==0){
+        for(let i =humanPosition-5; i<=humanPosition+55; i++){
+            if(i===moveY && moveX===0){
                 if(flagD===false&&flagR===false){
                     moveX=moveX+speedBall;
                     moveY=moveY-speedBall;
@@ -156,16 +156,12 @@ function moveBall(){
                 }
             }
         }
-        
-
-    
-
         ball.style.transform=`translate(${moveX}px,${moveY}px`;
 }
 
 
 function move(){
-    setInterval(moveBall, 8);
+    setInterval(moveBall, 18);
 
 }
 
