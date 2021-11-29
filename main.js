@@ -3,12 +3,13 @@ const input = document.querySelector("#input");
 const Square = document.querySelector("#Square");
 const human = document.querySelector("#human");
 const startTxt = document.querySelector("#start");
-
+const speed = document.querySelector("#speed");
+const section = document.querySelector(".section");
+const nameG= document.querySelector("#name");
+const score = document.querySelector(".score");
 
 let posMY;
 let posMX;
-const speedHandel=10;
-const speedBall=1;
 let down =0;
 let up =0;
 let dKey =false;
@@ -17,12 +18,19 @@ let translateX=0;
 let translateY=0;
 let moveX=0;
 let moveY=0;
-const limitX=258;
-const limitY=288;
-const limit=240;
 let flagR=true;
 let flagD=true;
 let start = true;
+let speedBall;
+let time;
+const speedHandel=10;
+const stepBall=1;
+const limitX=258;
+const limitY=288;
+const limit=240;
+let nameGamer;
+let scoreGame = 0;
+
 human.style.transform=`translate(0px,1px)`;
 
 
@@ -46,12 +54,19 @@ Square.addEventListener("mousemove", (event) => {
     translateY=posMY;
     human.style.transform=`translate(${translateX}px,${translateY}px)`;
 
-  });
+});
 
+
+
+
+
+
+function again(){
+    location.reload();
+}
 
 
 function mHuman(e) {
-
     if(e.key==="ArrowDown"&&down<=limit){
         if(uKey===true){
             down=up;
@@ -103,13 +118,14 @@ function mHuman(e) {
     }
 }
 
+
 function moveBall(){ 
         const humanPosition = +human.style.transform.split("translate(0px, ")[1].split("px)")[0];
-
+        
         if(moveX<=limitX && flagR===true && start===true ){
-            moveX=moveX+speedBall;
+            moveX=moveX+stepBall;
         }else{
-            moveX=moveX-speedBall;
+            moveX=moveX-stepBall;
             flagR=false;
         }
 
@@ -117,55 +133,103 @@ function moveBall(){
             moveX=-30;
             moveY=moveY;
             Square.style.border="solid 2px red";
-            startTxt.innerHTML="You lost";
+            startTxt.innerHTML=`${nameGamer} You lost`;
             startTxt.style.color="red";
+            startTxt.style.fontSize="25px";
             startTxt.style.display="block";
-            startTxt.style.left="64px";
+            startTxt.style.textAlign="center";
+            startTxt.style.right="0";
+            startTxt.style.left="0";
+            startTxt.style.top="0";
+            startTxt.style.bottom="0";
+            startTxt.style.transition="all 1000ms";
             start = false;
+            if(start===false){
+                const startAgain = document.createElement("button");
+                startAgain.id="startAgain";
+                startAgain.innerText="startAgain";
+                startAgain.style.color="green";
+                startAgain.style.marginTop="20px";
+                startAgain.style.width="100%";
+                startAgain.style.height="35px";
+                startAgain.style.transition="all 1000ms";
+                section.appendChild(startAgain);
+            }
+            startAgain.addEventListener("click",again);
+            clearInterval(time);
+            
         }
 
         if(moveY<=limitY && flagD === true && start===true){
-            moveY=moveY+speedBall;
+            moveY=moveY+stepBall;
         }else{
-            moveY=moveY-speedBall;
+            moveY=moveY-stepBall;
             flagD=false;
         }
 
         if(moveY>=0 && flagD === false && start===true){
-            moveY=moveY-speedBall;
+            moveY=moveY-stepBall;
         }else{
-            moveY=moveY+speedBall;
+            moveY=moveY+stepBall;
             flagD=true;
         }
         
-        
-        
         for(let i =humanPosition-5; i<=humanPosition+55; i++){
             if(i===moveY && moveX===0){
+                scoreGame=scoreGame+1;
+                console.log(scoreGame);
                 if(flagD===false&&flagR===false){
-                    moveX=moveX+speedBall;
-                    moveY=moveY-speedBall;
+                    moveX=moveX+stepBall;
+                    moveY=moveY-stepBall;
                     flagR=true;
                     flagD=false;
                 }
                 if(flagD===true&&flagR===false){
-                    moveX=moveX+speedBall;
-                    moveY=moveY+speedBall;
+                    moveX=moveX+stepBall;
+                    moveY=moveY+stepBall;
                     flagR=true;
                     flagD=true;
                 }
             }
         }
+        const score2 = document.querySelector("#scoreGames");
+        score2.innerHTML=`score : ${scoreGame}`;
         ball.style.transform=`translate(${moveX}px,${moveY}px`;
 }
 
 
 function move(){
-    setInterval(moveBall, 18);
+
+    const speedChoose = speed.value;
+    if(speedChoose==="very slow"){
+        speedBall=50;
+    }else if(speedChoose==="slow"){
+        speedBall=25;
+    }else if(speedChoose==="default"){
+        speedBall=15;
+    }else if(speedChoose==="fast"){
+        speedBall=8;
+    }else if(speedChoose==="very fast"){
+        speedBall=1;
+    }
+    time = setInterval(moveBall, speedBall);
+    // input.setAttribute("disabled","true");
+    nameGamer = nameG.value;
+    const span =  document.createElement("span");
+    span.innerHTML=`name : ${nameGamer}`;
+    span.style.fontSize="30px";
+    span.style.marginLeft="20px";
+    score.appendChild(span);
+
+    const h2 =  document.createElement("h2");
+    h2.id="scoreGames"
+    h2.innerHTML=`score : ${scoreGame}`;
+    h2.style.fontSize="30px";
+    h2.style.marginLeft="20px";
+    score.appendChild(h2);
+
 
 }
-
-
 
 
 // function moving(e){

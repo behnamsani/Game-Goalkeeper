@@ -8,18 +8,36 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    
-    <div id="Square">
-        <h2 id="start">Start...</h2>
+    <div id="main">
+        <div class="handel">
+            <label> Choose Speed : <label> 
+                <select id="speed">
+                    <option value="very slow">very slow</option>
+                    <option value="slow">slow</option>
+                    <option value="default">default</option>
+                    <option value="fast">fast</option>
+                    <option value="very fast">very fast</option>
+                </select> 
+        <div class="nameDiv">        
+            <label for="">enter name : </label>
+                <input type="text" id="name">
+        </div>
+        </div>
+        <div class="section">
+            <div id="Square">
+                <h2 id="start">click to Start...</h2>
 
-        <div id="human"></div>
+                <div id="human"></div>
 
-        <div class="ball"></div>
-        
-        <input type="text" id="input">
+                <div class="ball"></div>
+
+                <input type="text" id="input">
+            </div>
+        </div>
+        <div class="score">
+
+        </div>
     </div>
-    
-    
     <script src="./main.js"></script>
 </body>
 </html>

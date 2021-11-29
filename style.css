@@ -1,6 +1,12 @@
 
+#main{
+    display: flex;
+}
+.handel{
+    margin-right: 20px;
+}
 #Square{
-    
+    border-radius: 5px;
     height: 300px;
     width: 300px;
     border: solid 1px rgb(58, 58, 58);
@@ -9,7 +15,7 @@
 .ball{
     width:10px;height:10px;
     border-radius: 50%;
-    background-color: rgb(30, 253, 0);
+    background-color: rgb(0, 131, 253);
     border: solid 1px rgb(0, 0, 0);
     transition:transform 5ms;
     transition-timing-function: ease-in-out;
@@ -32,11 +38,15 @@ body{
     background:rgb(80, 80, 80);
     margin: 0 20px;
     position: relative;
+    border-radius: 8px;
 }
 
 #start{
-    position: absolute;top: 80px;left:80px;
+    position: absolute;top: 99px;left:44px;
     opacity: 50%;
-    font-size: 50px;
+    font-size: 35px;
     color:green;
+}
+.nameDiv{
+    margin-top: 20px;
 }
