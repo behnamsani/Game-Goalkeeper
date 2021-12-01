@@ -17,10 +17,7 @@
     border-radius: 50%;
     background-color: rgb(0, 131, 253);
     border: solid 1px rgb(0, 0, 0);
-    transition:transform 5ms;
-    transition-timing-function: ease-in-out;
     position:absolute;top: 0;left: 30px;
-    
 }
 body{
     display: flex;justify-content: center;
@@ -49,4 +46,17 @@ body{
 }
 .nameDiv{
     margin-top: 20px;
+}
+#name{
+    border: 1px solid;
+    background: #eee;
+    border-radius: 8px;
+    outline: none;
+}
+.score{
+    text-align: center;
+    height: 105px;
+    margin-left: 30px;
+    border-radius: 8px;
+    padding: 10px 20px 10px 0px;
 }

@@ -21,10 +21,11 @@ let moveY=0;
 let flagR=true;
 let flagD=true;
 let start = true;
+let posStart = true;
 let speedBall;
 let time;
 const speedHandel=10;
-const stepBall=1;
+let stepBall=1;
 const limitX=258;
 const limitY=288;
 const limit=240;
@@ -45,19 +46,23 @@ input.addEventListener("click", ()=>{
 Square.addEventListener("mousemove", (event) => {
      posMX = event.clientX; // Gets Mouse X
      posMY = event.clientY; // Gets Mouse Y
+     translateY=posMY-positionStartLimit;
     if(posMY<=15){
-        posMY=1;
+        translateY=-positionStartLimit;
+        posMY=8;
     }
     if(posMY>=240){
+        translateY=240-positionStartLimit;
         posMY=240;
     }
-    translateY=posMY;
     human.style.transform=`translate(${translateX}px,${translateY}px)`;
-
 });
 
 
-
+let positionStart =Math.round(Math.random()*240);
+const positionStartLimit = positionStart;
+ball.style.top=`${positionStart}px`;
+human.style.top=`${positionStart}px`;
 
 
 
@@ -118,17 +123,11 @@ function mHuman(e) {
     }
 }
 
-
-function moveBall(){ 
-        const humanPosition = +human.style.transform.split("translate(0px, ")[1].split("px)")[0];
-        
-        if(moveX<=limitX && flagR===true && start===true ){
-            moveX=moveX+stepBall;
-        }else{
-            moveX=moveX-stepBall;
-            flagR=false;
+function moveBall(){
+        if(human.style.transform === "translate(0px)"){
+            human.style.transform="translate(0px,1px)";
         }
-
+        const humanPosition = +human.style.transform.split("translate(0px, ")[1].split("px)")[0];
         if(moveX<-25 && flagR===false ){
             moveX=-30;
             moveY=moveY;
@@ -156,20 +155,25 @@ function moveBall(){
                 section.appendChild(startAgain);
             }
             startAgain.addEventListener("click",again);
-            clearInterval(time);
-            
+            clearInterval(time); 
         }
 
-        if(moveY<=limitY && flagD === true && start===true){
+        
+        if(moveX<=limitX && flagR===true && start===true){
+            moveX=moveX+stepBall;
+        }else{
+            moveX=moveX-stepBall;
+            flagR=false;
+        }
+
+        if(moveY<=(limitY-positionStart) && flagD === true && start===true){
             moveY=moveY+stepBall;
         }else{
             moveY=moveY-stepBall;
             flagD=false;
         }
 
-        if(moveY>=0 && flagD === false && start===true){
-            moveY=moveY-stepBall;
-        }else{
+        if(moveY<=-positionStartLimit && flagD === false && start===true){
             moveY=moveY+stepBall;
             flagD=true;
         }
@@ -177,7 +181,20 @@ function moveBall(){
         for(let i =humanPosition-5; i<=humanPosition+55; i++){
             if(i===moveY && moveX===0){
                 scoreGame=scoreGame+1;
-                console.log(scoreGame);
+                if(scoreGame%5===0){
+
+                    if(speedBall<=1){
+                        stepBall+=1;
+                    }
+                    if(speedBall>1){
+                        speedBall-=3;
+                        if(speedBall<=1){
+                            speedBall=1;
+                            stepBall+=1;
+                        }
+                    }
+                }
+                console.log(speedBall);
                 if(flagD===false&&flagR===false){
                     moveX=moveX+stepBall;
                     moveY=moveY-stepBall;
@@ -202,7 +219,7 @@ function move(){
 
     const speedChoose = speed.value;
     if(speedChoose==="very slow"){
-        speedBall=50;
+        speedBall=40;
     }else if(speedChoose==="slow"){
         speedBall=25;
     }else if(speedChoose==="default"){
@@ -213,10 +230,11 @@ function move(){
         speedBall=1;
     }
     time = setInterval(moveBall, speedBall);
-    // input.setAttribute("disabled","true");
+    input.setAttribute("disabled","true");
+    score.style.border="2px solid darkmagenta";
     nameGamer = nameG.value;
     const span =  document.createElement("span");
-    span.innerHTML=`name : ${nameGamer}`;
+    span.innerHTML=`${nameGamer}`;
     span.style.fontSize="30px";
     span.style.marginLeft="20px";
     score.appendChild(span);
@@ -227,8 +245,6 @@ function move(){
     h2.style.fontSize="30px";
     h2.style.marginLeft="20px";
     score.appendChild(h2);
-
-
 }
 
 
