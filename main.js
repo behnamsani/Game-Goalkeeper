@@ -58,8 +58,27 @@ Square.addEventListener("mousemove", (event) => {
     human.style.transform=`translate(${translateX}px,${translateY}px)`;
 });
 
+Square.addEventListener("touchmove",(event)=>{
+        x = event.touches[0].clientX;
+        y = event.touches[0].clientY;
+        console.log(positionStartLimit);
+        console.log(y);
+     translateY=y-positionStartLimit;
+    if(y<=15){
+        translateY=-positionStartLimit;
+        y=8;
+    }
+    if(y>=240){
+        translateY=240-positionStartLimit;
+        y=240;
+    }
+    console.log(`y : ${translateY}`)
+    human.style.transform=`translate(${translateX}px,${translateY}px)`;
+});
+
 
 let positionStart =Math.round(Math.random()*240);
+
 const positionStartLimit = positionStart;
 ball.style.top=`${positionStart}px`;
 human.style.top=`${positionStart}px`;

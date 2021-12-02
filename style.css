@@ -60,3 +60,23 @@ body{
     border-radius: 8px;
     padding: 10px 20px 10px 0px;
 }
+
+@media only screen and (max-width: 750px){
+    #main{
+        display: block;
+        text-align: center;
+    }
+    .handel{
+        margin-bottom: 20px;
+    }
+    .score{
+        text-align: center;
+        height: 105px;
+        margin-top: 30px;
+        margin-left: ;
+        border-radius: 8px;
+        padding: 10px 20px 10px 0px;
+    }
+
+
+}
