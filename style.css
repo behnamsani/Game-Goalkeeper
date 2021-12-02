@@ -69,11 +69,12 @@ body{
     .handel{
         margin-bottom: 20px;
     }
+
     .score{
         text-align: center;
         height: 105px;
         margin-top: 30px;
-        margin-left: ;
+        margin-left: 0;
         border-radius: 8px;
         padding: 10px 20px 10px 0px;
     }
