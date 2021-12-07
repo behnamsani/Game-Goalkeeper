@@ -1,6 +1,8 @@
 
 #main{
     display: flex;
+    position: relative;
+    overflow-y: hidden;
 }
 .handel{
     margin-right: 20px;
