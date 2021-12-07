@@ -59,18 +59,16 @@ Square.addEventListener("mousemove", (event) => {
 });
 
 Square.addEventListener("touchmove",(event)=>{
-        x = event.touches[0].clientX;
-        y = event.touches[0].clientY;
-        console.log(positionStartLimit);
-        console.log(y);
-     translateY=y-positionStartLimit;
-    if(y<=15){
+        x = event.touches[0].pageX;
+        y = event.touches[0].pageY;
+     translateY=Math.round(y-positionStartLimit-140);
+    if(y<=140 && translateY<= -(positionStartLimit)){
         translateY=-positionStartLimit;
-        y=8;
+        y=140;
     }
-    if(y>=240){
+    if(y>=380 && translateY>=240-positionStartLimit){
         translateY=240-positionStartLimit;
-        y=240;
+        y=380;
     }
     console.log(`y : ${translateY}`)
     human.style.transform=`translate(${translateX}px,${translateY}px)`;
