@@ -1,8 +1,14 @@
 
 #main{
     display: flex;
-    position: relative;
-    overflow-y: hidden;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:0;
 }
 .handel{
     margin-right: 20px;
@@ -13,6 +19,7 @@
     width: 300px;
     border: solid 1px rgb(58, 58, 58);
     position: relative;
+    margin:auto;
 }
 .ball{
     width:10px;height:10px;
