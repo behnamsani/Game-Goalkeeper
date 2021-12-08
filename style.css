@@ -5,13 +5,14 @@
     height: 100%;
     margin: 0;
     overflow: hidden;
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: 25px;
     left: 0;
     right:0;
 }
 .handel{
     margin-right: 20px;
+    
 }
 #Square{
     border-radius: 5px;
@@ -70,10 +71,17 @@ body{
     padding: 10px 20px 10px 0px;
 }
 
-@media only screen and (max-width: 750px){
+@media only screen and (max-width: 700px){
     #main{
         display: block;
         text-align: center;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right:0;
     }
     .handel{
         margin-bottom: 20px;
@@ -90,4 +98,16 @@ body{
     }
 
 
+}
+@media only screen and (max-height: 650px) and (max-width: 700px){
+    .score{
+        border: none !important;
+        position: absolute !important;
+        top: 310px;
+        right: 135px;
+        opacity: 0.5;
+    }
+    .score span {
+        display: none;
+    }
 }
